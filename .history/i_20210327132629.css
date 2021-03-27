@@ -1,0 +1,31 @@
+/* .mybox {
+  position: initial;
+  width: 100px;
+  height: 10px;
+  background: red;
+  left: 10px;
+  top: 100px;
+}
+.mybox2 {
+  position: initial;
+  width: 100px;
+  height: 100px;
+  background: green;
+  left: 10px;
+  top: 100px;
+} */
+#first {
+  width: 100px;
+  height: 100px;
+  background: red;
+  
+}
+
+#first #second {
+  position: relative;
+  width: 100%;
+  height: 35%;
+  margin: auto;
+  margin-top: 15%;
+  background: green;
+}

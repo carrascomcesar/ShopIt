@@ -1,0 +1,2 @@
+module.exports = {
+    DB_LOCAL_URI = mongodb://localhost:27017/shopit}

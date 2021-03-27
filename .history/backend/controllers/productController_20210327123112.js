@@ -1,0 +1,1 @@
+export.getProducts = (req, res, next) 

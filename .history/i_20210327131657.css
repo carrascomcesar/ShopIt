@@ -1,0 +1,16 @@
+.mybox {
+  position: initial;
+  width: 100px;
+  height: 100px;
+  background: red;
+  left: 10px;
+  top: 100px;
+}
+.mybox2 {
+  position: initial;
+  width: 100px;
+  height: 100px;
+  background: red;
+  left: 10px;
+  top: 100px;
+}
