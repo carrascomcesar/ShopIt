@@ -2,22 +2,11 @@ const Product = require("../models/products");
 
 // UPDATE product = > /api/v1/product/:id/update
 
-exports.updateProduct = async (req, res, next) => {
-  let product = await Product.findById((id = req.params.id));
-
-  if (!product) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-    });
-  }
-  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
-  res.status(200).json({
+exports.newProduct = async (req, res, next) => {
+  const product = await Product.create(req.body);
+  res.status(201).json({
     success: true,
+    message: "Product was successfully created.",
     product,
   });
 };
@@ -49,7 +38,6 @@ exports.newProduct = async (req, res, next) => {
 };
 
 // Get ALL Products in Database => /api/v1/products
-
 exports.getProducts = async (req, res, next) => {
   const products = await Product.find();
 

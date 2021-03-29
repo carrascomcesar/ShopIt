@@ -11,15 +11,8 @@ exports.updateProduct = async (req, res, next) => {
       message: "Product not found",
     });
   }
-  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
-  res.status(200).json({
-    success: true,
-    product,
-  });
+  product = await Product.findByIDAnd
+  
 };
 
 // Get SINGLE Product FROM Database => /api/v1/product/:id
