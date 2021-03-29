@@ -10,9 +10,10 @@ exports.getSingleProduct = async (req, res, next) => {
       message: "Product not found",
     });
   }
-  res.status(200).json({
+    res.status(200).json({
     success: true,
-    product,
+    count: products.length,
+    products,
   });
 };
 // Create new product = > /api/v1/product/new

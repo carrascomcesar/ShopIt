@@ -12,7 +12,8 @@ exports.getSingleProduct = async (req, res, next) => {
   }
   res.status(200).json({
     success: true,
-    product,
+
+  product
   });
 };
 // Create new product = > /api/v1/product/new

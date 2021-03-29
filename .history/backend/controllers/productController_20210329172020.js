@@ -2,17 +2,9 @@ const Product = require("../models/products");
 
 // Get SINGLE Product FROM Database => /api/v1/product/:id
 exports.getSingleProduct = async (req, res, next) => {
-  const product = await Product.findById((id = req.params.id));
-
-  if (!product) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-    });
-  }
-  res.status(200).json({
-    success: true,
-    product,
+  const product = await Product.findBy
+    count: products.length,
+    products,
   });
 };
 // Create new product = > /api/v1/product/new

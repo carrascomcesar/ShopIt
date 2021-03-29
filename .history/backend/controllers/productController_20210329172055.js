@@ -5,14 +5,12 @@ exports.getSingleProduct = async (req, res, next) => {
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-    });
+    return res.status()
   }
   res.status(200).json({
     success: true,
-    product,
+    count: products.length,
+    products,
   });
 };
 // Create new product = > /api/v1/product/new
