@@ -1,9 +1,9 @@
 const Product = require("../models/products");
 const ErrorHandler = require("../utils/errorHandler");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 
 // DELETE product = > /api/v1/admin/product/:id/
-exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+exports.deleteProduct = async (req, res, next) => {
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {
@@ -14,10 +14,10 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "Product has been deleted.",
   });
-});
+};
 
 // UPDATE product = > /api/v1/admin/product/:id/
-exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
+exports.updateProduct = async (req, res, next) => {
   let product = await Product.findById((id = req.params.id));
 
   if (!product) {
@@ -32,10 +32,10 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     success: true,
     product,
   });
-});
+};
 
 // Get SINGLE Product FROM Database => /api/v1/product/:id
-exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
+exports.getSingleProduct = async (req, res, next) => {
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {
@@ -45,21 +45,21 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
     success: true,
     product,
   });
-});
+};
 // Create new product = > /api/v1/product/new
 
-exports.newProduct = catchAsyncErrors(async (req, res, next) => {
+exports.newProduct = catchAsyncErrors(async (req, res, next)) => {
   const product = await Product.create(req.body);
   res.status(201).json({
     success: true,
     message: "Product was successfully created.",
     product,
-  });
-});
+  } );
+};
 
 // Get ALL Products in Database => /api/v1/products
 
-exports.getProducts = catchAsyncErrors(async (req, res, next) => {
+exports.getProducts = async (req, res, next) => {
   const products = await Product.find();
 
   res.status(200).json({
@@ -67,4 +67,4 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     count: products.length,
     products,
   });
-});
+};

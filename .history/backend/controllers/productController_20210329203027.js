@@ -1,9 +1,9 @@
 const Product = require("../models/products");
 const ErrorHandler = require("../utils/errorHandler");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 
 // DELETE product = > /api/v1/admin/product/:id/
-exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+exports.deleteProduct = async (req, res, next) => {
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {
@@ -14,7 +14,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "Product has been deleted.",
   });
-});
+};
 
 // UPDATE product = > /api/v1/admin/product/:id/
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
@@ -67,4 +67,4 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     count: products.length,
     products,
   });
-});
+})

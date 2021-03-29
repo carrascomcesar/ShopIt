@@ -1,6 +1,6 @@
 const Product = require("../models/products");
 const ErrorHandler = require("../utils/errorHandler");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 
 // DELETE product = > /api/v1/admin/product/:id/
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
