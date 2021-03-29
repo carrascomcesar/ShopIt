@@ -12,7 +12,7 @@ exports.newProduct = async (req, res, next) => {
 
 // Get ALL Products in Database
 exports.getProducts = async (req, res, next) => {
-  const products = await Product.find();
+  const products = Product.find();
 
   res.status(200).json({
     success: true,

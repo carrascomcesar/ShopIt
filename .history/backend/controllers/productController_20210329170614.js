@@ -11,12 +11,11 @@ exports.newProduct = async (req, res, next) => {
 };
 
 // Get ALL Products in Database
-exports.getProducts = async (req, res, next) => {
-  const products = await Product.find();
-
+exports.getProducts = (req, res, next) => {
+  const products = await Product.find()
+  
   res.status(200).json({
     success: true,
-    count: products.length,
-    products,
-  });
+    count: products.length
+products  });
 };

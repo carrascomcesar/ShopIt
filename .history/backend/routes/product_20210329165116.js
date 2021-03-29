@@ -7,3 +7,4 @@ router.route("/products").get(getProducts);
 router.route("/product/new").post(newProduct);
 
 module.exports = router;
+config
