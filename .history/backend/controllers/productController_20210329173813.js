@@ -1,7 +1,7 @@
 const Product = require("../models/products");
 
 // DELETE product = > /api/v1/admin/product/:id/
-exports.deleteProduct = async (req, res, next) => {
+exports.updateProduct = async (req, res, next) => {
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {

@@ -1,7 +1,7 @@
 const Product = require("../models/products");
 
 // DELETE product = > /api/v1/admin/product/:id/
-exports.deleteProduct = async (req, res, next) => {
+exports.updateProduct = async (req, res, next) => {
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {
@@ -10,10 +10,14 @@ exports.deleteProduct = async (req, res, next) => {
       message: "Product not found",
     });
   }
-  await product.remove();
+  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
   res.status(200).json({
     success: true,
-    message: "Product has been deleted.",
+    product,
   });
 };
 
