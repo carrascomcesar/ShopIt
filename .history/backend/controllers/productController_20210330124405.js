@@ -61,22 +61,16 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 // Get ALL Products in Database => /api/v1/products
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  // Default count Results per page
-  const resultsPerPage = 5;
-
-  // Products Count to be used in Frontend
+  const resultsPerPage = 4;
   const productCount = await Product.countDocuments();
 
-  // Search & Filter Functions
   const apiFeatures = new APIFeatures(Product.find(), req.query)
     .search()
     .filter()
     .pagination(resultsPerPage);
 
-  // Returned Products
   const products = await apiFeatures.query;
 
-  // JSON success
   res.status(200).json({
     success: true,
     count: products.length,
