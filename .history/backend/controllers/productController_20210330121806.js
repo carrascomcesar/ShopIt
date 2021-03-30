@@ -37,6 +37,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get SINGLE Product FROM Database => /api/v1/product/:id
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
+
   const product = await Product.findById((id = req.params.id));
 
   if (!product) {
@@ -63,7 +64,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const apiFeatures = new APIFeatures(Product.find(), req.query).search();
 
-  const products = await apiFeatures.query;
+  const products = await Product.find();
 
   res.status(200).json({
     success: true,
@@ -71,4 +72,3 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     products,
   });
 });
-

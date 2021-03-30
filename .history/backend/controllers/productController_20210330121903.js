@@ -71,4 +71,3 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     products,
   });
 });
-
