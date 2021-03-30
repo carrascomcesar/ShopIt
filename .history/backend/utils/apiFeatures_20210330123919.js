@@ -18,7 +18,6 @@ class APIFeatures {
     this.query = this.query.find({ ...keyword });
     return this;
   }
-
   // Filter Products by Price, Ratings, Etc.
   filter() {
     const queryCopy = { ...this.queryString };
@@ -36,18 +35,9 @@ class APIFeatures {
     this.query = this.query.find(JSON.parse(queryString));
     return this;
   }
-
-  // Paginate Products
   pagination(resultsPerPage) {
     const currentPage = Number(this.queryString.page) || 1;
-    const skip = resultsPerPage * (currentPage - 1);
-
-    // Limit Results we get Per Page & Skip to results.
-    this.query = this.query.limit(resultsPerPage).skip(skip);
-
-    return this;
   }
 }
 
 module.exports = APIFeatures;
-Pa

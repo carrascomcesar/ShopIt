@@ -44,10 +44,9 @@ class APIFeatures {
 
     // Limit Results we get Per Page & Skip to results.
     this.query = this.query.limit(resultsPerPage).skip(skip);
-
+    
     return this;
   }
 }
 
 module.exports = APIFeatures;
-Pa
