@@ -29,7 +29,7 @@ class APIFeatures {
       /\b(gt|gte|lt|lte)\b/g,
       (match) => `$${match}`
     );
-    this.query = this.query.find(JSON.parse(queryString));
+    this.query = this.query.find(queryCopy);
     return this;
   }
 }

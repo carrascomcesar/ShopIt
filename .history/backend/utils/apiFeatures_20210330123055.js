@@ -24,12 +24,9 @@ class APIFeatures {
     removeFields.forEach((el) => delete queryCopy[el]);
 
     //Filter for Price, Ratings, Etc.
-    let queryString = JSON.stringify(queryCopy);
-    queryString = queryString.replace(
-      /\b(gt|gte|lt|lte)\b/g,
-      (match) => `$${match}`
-    );
-    this.query = this.query.find(JSON.parse(queryString));
+    let queryString = JSON.stringify(queryCopy)
+    queryString = queryString.replace()
+    this.query = this.query.find(queryCopy);
     return this;
   }
 }
