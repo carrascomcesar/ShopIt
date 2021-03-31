@@ -1,0 +1,53 @@
+class APIFeatures {
+  constructor(query, queryString) {
+    this.query = query;
+    this.queryString = queryString;
+  }
+
+  //Search Product by Keyword
+  search() {
+    // Get Keyword from URL
+    const keyword = this.queryString.keyword
+      ? {
+          name: {
+            $regex: this.queryString.keyword,
+            $options: "i", // Case insensitive
+          },
+        }
+      : {};
+    console.log(keyword);
+    this.query = this.query.find({ ...keyword });
+    return this;
+  }
+
+  // Filter Products by Price, Ratings, Etc.
+  filter() {
+    const queryCopy = { ...this.queryString };
+
+    // Removing fields from the Query
+    const removeFields = ["keyword", "limit", "page"];
+    removeFields.forEach((el) => delete queryCopy[el]);
+
+    //Filter for Price, Ratings, Etc.
+    let queryString = JSON.stringify(queryCopy);
+    queryString = queryString.replace(
+      /\b(gt|gte|lt|lte)\b/g,
+      (match) => `$${match}`
+    );
+    this.query = this.query.find(JSON.parse(queryString));
+    return this;
+  }
+
+  // Paginate Products
+  pagination(resultsPerPage) {
+    const currentPage = Number(this.queryString.page) || 1;
+    const skip = resultsPerPage * (currentPage - 1);
+
+    // Limit Results we get Per Page & Skip to results.
+    this.query = this.query.limit(resultsPerPage).skip(skip);
+
+    return this;
+  }
+}
+
+module.exports = APIFeatures;
