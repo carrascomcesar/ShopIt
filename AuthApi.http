@@ -1,12 +1,12 @@
-# REGISTER USER
-POST http://localhost:5000/api/v1/register
-Content-type: application/json
+# # REGISTER USER
+# POST http://localhost:5000/api/v1/register
+# Content-type: application/json
 
-{
-    "name":"juan",
-    "email":"juan@gmail.com",
-    "password": "juan12345"
-}
+# {
+#     "name":"juan",
+#     "email":"juan@gmail.com",
+#     "password": "juan12345"
+# }
 
 # LOGIN USER
 POST http://localhost:5000/api/v1/login
