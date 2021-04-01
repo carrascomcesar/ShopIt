@@ -1,2 +1,21 @@
 # GET ALL PRODUCTS
 GET http://localhost:5000/api/v1/products HTTP/1.1
+
+# CREATE & SAVE PRODUCT
+# POST http://localhost:5000/api/v1/admin/product/new HTTP/1.1
+# Content-type: application/json
+
+# {
+#     "name":"An Awesome Product",
+#     "description": "A thing",
+#     "ratings": 1,
+#     "images": {
+#         "public_id": "pid",
+#         "url": "url"
+#     },
+#     "category": "Food",
+#     "seller": "ebay",
+#     "stock": 1,
+#     "numOfReviews": 1,
+#     "reviews": []
+# }

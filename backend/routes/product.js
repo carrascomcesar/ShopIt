@@ -9,14 +9,17 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
-const { isAuthenticatedUser } = require("../middleware/auth");
+const { isAuthenticatedUser, authorizedRoles } = require("../middleware/auth");
 
-router.route("/products").get(getProducts);
-router.route("/admin/product/new").post(isAuthenticatedUser, newProduct);
+router.route("/products").get(isAuthenticatedUser, getProducts);
 router.route("/product/:id").get(getSingleProduct);
 router
+  .route("/admin/product/new")
+  .post(isAuthenticatedUser, authorizedRoles("admin"), newProduct);
+
+router
   .route("/admin/product/:id")
-  .put(isAuthenticatedUser, updateProduct)
-  .delete(isAuthenticatedUser, deleteProduct);
+  .put(isAuthenticatedUser, authorizedRoles("admin"), updateProduct)
+  .delete(isAuthenticatedUser, authorizedRoles("admin"), deleteProduct);
 
 module.exports = router;
