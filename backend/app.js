@@ -1,6 +1,8 @@
 const express = require("express");
-const errorMiddleware = require("./middleware/errors");
 const app = express();
+
+const cookieParser = require("cookie-parser");
+const errorMiddleware = require("./middleware/errors");
 
 app.use(express.json());
 
@@ -10,6 +12,7 @@ const auth = require("./routes/auth");
 
 app.use("/api/v1", products);
 app.use("/api/v1", auth);
+app.use(cookieParser());
 
 // Middleware to handle Errors
 app.use(errorMiddleware);
