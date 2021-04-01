@@ -1,4 +1,4 @@
-# # REGISTER USER
+# REGISTER USER
 # POST http://localhost:5000/api/v1/register
 # Content-type: application/json
 
@@ -8,11 +8,14 @@
 #     "password": "juan12345"
 # }
 
-# LOGIN USER
-POST http://localhost:5000/api/v1/login
-Content-type: application/json
+# LOGIN USER & SET COOKIE
+# POST http://localhost:5000/api/v1/login
+# Content-type: application/json
 
-{
-    "email":"juan@gmail.com",
-    "password": "juan12345"
-}
+# {
+#     "email":"juan@gmail.com",
+#     "password": "juan12345"
+# }
+
+# LOGOUT USER & CLEAR COOKIE
+# POST http://localhost:5000/api/v1/logout HTTP/1.1
