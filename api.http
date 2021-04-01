@@ -1,2 +1,12 @@
 # GET ALL PRODUCTS
-GET http://localhost:5000/api/v1/products
+# GET http://localhost:5000/api/v1/products
+
+# CREATE USER
+POST http://localhost:5000/api/v1/register
+Content-type: application/json
+
+{
+    "name":"juan",
+    "email":"juan@gmail.com",
+    "password": "juan12345"
+}
