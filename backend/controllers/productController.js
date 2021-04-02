@@ -47,9 +47,11 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
-// Create new product = > /api/v1/product/new
 
+// Create new product = > /api/v1/admin/product/new
 exports.newProduct = catchAsyncErrors(async (req, res, next) => {
+  req.body.user = req.user.id;
+
   const product = await Product.create(req.body);
   res.status(201).json({
     success: true,
