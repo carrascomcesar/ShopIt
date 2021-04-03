@@ -60,8 +60,7 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
 // Forgot Password => /api/v1/password/forgot
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-  console.log(req);
-
+  
   if (!user) {
     return next(new ErrorHandler("User not found with this email.", 404));
   }
@@ -74,14 +73,14 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   // Create Reset Password URL
   const resetUrl = `${req.protocol}://${req.get(
     "host"
-  )}/api/v1/reset/${resetToken}`;
+  )}/api/v1/password/reset/${resetToken}`;
 
   const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, please ignore it.`;
 
   try {
     await sendEmail({
       email: user.email,
-      subject: "Shopit Password Recovery",
+      subject: "ShopIt Password Recovery",
       message,
     });
     res.status(200).json({
@@ -109,8 +108,9 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   const user = await User.findOne({
     resetPasswordToken,
-    resetPasswordExpire: { $gt: Date.now },
+    resetPasswordExpire: { $gt: Date.now() },
   });
+  
   if (!user) {
     return next(
       new ErrorHandler("Password reset token is invalid or expired.", 400)

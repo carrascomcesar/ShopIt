@@ -18,7 +18,7 @@
 # }
 
 # LOGOUT USER & CLEAR COOKIE
-# POST http://localhost:5000/api/v1/logout HTTP/1.1
+GET http://localhost:5000/api/v1/logout HTTP/1.1
 
 # RESET FORGOTTEN PASSWORD
 # POST http://localhost:5000/api/v1/password/forgot HTTP/1.1
