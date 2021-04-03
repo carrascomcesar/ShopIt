@@ -2,11 +2,11 @@
 # POST http://localhost:5000/api/v1/register
 # Content-type: application/json
 
-# {
-#     "name":"cesar",
-#     "email":"cesar@gmail.com",
-#     "password": "cesar12345"
-# }
+{
+    "name":"cesar",
+    "email":"cesar@gmail.com",
+    "password": "cesar12345"
+}
 
 # LOGIN USER & SET COOKIE
 # POST http://localhost:5000/api/v1/login
