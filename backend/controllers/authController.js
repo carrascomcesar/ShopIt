@@ -5,6 +5,76 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
+
+// Admin Routes
+
+// Get User Details => /api/v1/admin/user/:id
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not found with id: ${req.params.id}`)
+    );
+  }
+  
+  // Remove avatar from Cloudinary - TODO
+
+  await user.remove()
+
+  res.status(200).json({
+    success: true,
+    message: "User deleted Successfully",
+  });
+});
+
+// Get ALL Users => /api/v1/admin/users
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+  console.log(users);
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+// Get User Details => /api/v1/admin/user/:id
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not found with id: ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Update User Profile => /api/v1/admin/user/:id
+exports.updateUserAsAdmin = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "User Profile successfully updated",
+  });
+});
+
 // Update User Profile => /api/v1/me/update
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
@@ -178,31 +248,4 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   sendToken(user, 200, res);
-});
-
-// Admin Routes
-
-// Get ALL Users => /api/v1/admin/users
-exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
-  const users = await User.find();
-  res.status(200).json({
-    success: true,
-    users,
-  });
-});
-
-// Get User Details => /api/v1/admin/user/:id
-exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    return next(
-      new ErrorHandler(`User does not found with id: ${req.params.id}`)
-    );
-  }
-
-  res.status(200).json({
-    success: true,
-    user,
-  });
 });
