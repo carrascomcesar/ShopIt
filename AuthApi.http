@@ -2,23 +2,23 @@
 # POST http://localhost:5000/api/v1/register
 # Content-type: application/json
 
-{
-    "name":"cesar",
-    "email":"cesar@gmail.com",
-    "password": "cesar12345"
-}
-
-# LOGIN USER & SET COOKIE
-# POST http://localhost:5000/api/v1/login
-# Content-type: application/json
-
 # {
+#     "name":"cesar",
 #     "email":"cesar@gmail.com",
 #     "password": "cesar12345"
 # }
 
-# LOGOUT USER & CLEAR COOKIE
-GET http://localhost:5000/api/v1/logout HTTP/1.1
+# LOGIN USER & SET COOKIE
+# POST http://localhost:5000/api/v1/login HTPP/1.1
+# Content-type: application/json
+
+# {
+#     "email":"cesar@gmail.com",
+#     "password": "cesar1234"
+# }
+
+# # LOGOUT USER & CLEAR COOKIE
+# GET http://localhost:5000/api/v1/logout HTTP/1.1
 
 # RESET FORGOTTEN PASSWORD
 # POST http://localhost:5000/api/v1/password/forgot HTTP/1.1
@@ -26,3 +26,6 @@ GET http://localhost:5000/api/v1/logout HTTP/1.1
 # {
 #     "email":"cesar@gmail.com",
 # }
+
+# GET ALL USERS AS ADMIN
+GET http://localhost:5000/api/v1/admin/users HTTP/1.1
