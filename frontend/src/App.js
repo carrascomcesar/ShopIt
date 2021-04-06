@@ -1,15 +1,20 @@
 import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header>
+    <Router>
+      <div className="App">
         <Header></Header>
+        <div className="container container-fluid">
+          <Route path="/" component={Home} exact />
+        </div>
         <Footer></Footer>
-      </header>
-    </div>
+      </div>
+    </Router>
   );
 }
 
