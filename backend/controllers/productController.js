@@ -113,7 +113,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const resultsPerPage = 5;
 
   // Products Count to be used in Frontend
-  const productCount = await Product.countDocuments();
+  const productsCount = await Product.countDocuments();
 
   // Search & Filter Functions
   const apiFeatures = new APIFeatures(Product.find(), req.query)
@@ -127,7 +127,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   // JSON success
   res.status(200).json({
     success: true,
-    productCount,
+    productsCount,
     products,
   });
 });
