@@ -49,5 +49,6 @@
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12"
-  }
+  },
+  "proxy": "https://127.0.0.1:5000"
 }
