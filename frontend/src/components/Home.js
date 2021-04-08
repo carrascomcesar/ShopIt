@@ -4,20 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions/productActions";
 
 import Product from "./Product";
+import Loader from "./layout/Loader";
+import { useAlert } from "react-alert";
 
 export default function Home() {
+  const alert = useAlert();
   const dispatch = useDispatch();
+
   const { loading, products, error, productsCount } = useSelector(
     (state) => state.products
   );
+
   // Hook that runs when Home COmponent is Loaded
   useEffect(() => {
+    if (error) {
+      return alert.error(error);
+    }
     dispatch(getProducts());
-  }, [dispatch]);
+  }, [dispatch, alert, error]);
   return (
     <Fragment>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loader></Loader>
       ) : (
         <Fragment>
           <MetaData title={"Buy the Best Products Online"}></MetaData>
