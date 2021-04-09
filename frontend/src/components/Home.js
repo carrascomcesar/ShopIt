@@ -9,7 +9,7 @@ import { useAlert } from "react-alert";
 
 import Pagination from "react-js-pagination";
 
-export default function Home() {
+export default function Home({ match }) {
   const alert = useAlert();
   const dispatch = useDispatch();
 
@@ -23,13 +23,15 @@ export default function Home() {
     resultsPerPage,
   } = useSelector((state) => state.products);
 
+  const keyword = match.params.keyword;
+
   // Hook that runs when Home COmponent is Loaded
   useEffect(() => {
     if (error) {
       return alert.error(error);
     }
-    dispatch(getProducts(currentPage));
-  }, [dispatch, alert, error]);
+    dispatch(getProducts(currentPage, keyword));
+  }, [dispatch, alert, error, keyword, currentPage]);
 
   function setCurrentPageNumber(pageNumber) {
     setCurrentPage(pageNumber);
