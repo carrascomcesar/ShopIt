@@ -24,6 +24,7 @@ export default function ProductDetails({ match }) {
 
   return (
     <Fragment>
+      <MetaData title={`${product.name} | ShopIt`} />
       {loading ? (
         <Loader></Loader>
       ) : (

@@ -10,14 +10,14 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from "../constants/productConstants";
 
-export const getProducts = () => async (dispatch) => {
+export const getProducts = (currentPage = 1) => async (dispatch) => {
   try {
     // Set Loading to True and Products as an Empty Array
     dispatch({
       type: ALL_PRODUCTS_REQUEST,
     });
     // Get Data from API Backend
-    const { data } = await axios.get("/api/v1/products");
+    const { data } = await axios.get(`/api/v1/products?page=${currentPage}`);
 
     // Dispatch Success
     dispatch({
