@@ -10,7 +10,7 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from "../constants/productConstants";
 
-export const getProducts = (currentPage = 1, keyword = "") => async (
+export const getProducts = (currentPage = 1, keyword = "", price) => async (
   dispatch
 ) => {
   try {
@@ -19,9 +19,9 @@ export const getProducts = (currentPage = 1, keyword = "") => async (
       type: ALL_PRODUCTS_REQUEST,
     });
     // Get Data from API Backend
-    const { data } = await axios.get(
-      `/api/v1/products?keyword=${keyword}&page=${currentPage}`
-    );
+    let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}}`;
+
+    const { data } = await axios.get(link);
 
     // Dispatch Success
     dispatch({

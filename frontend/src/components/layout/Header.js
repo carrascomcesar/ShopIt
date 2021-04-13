@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Search from "./Search";
-import { Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -8,7 +8,9 @@ export default function Header() {
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
-            <img alt="" src="./images/logo.png" />
+            <Link to="/">
+              <img alt="" src="./images/logo.png" />
+            </Link>
           </div>
         </div>
 
