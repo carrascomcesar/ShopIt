@@ -14,7 +14,8 @@ export const getProducts = (
   currentPage = 1,
   keyword = "",
   price,
-  category
+  category,
+  rating = 0
 ) => async (dispatch) => {
   try {
     // Set Loading to True and Products as an Empty Array
@@ -22,7 +23,7 @@ export const getProducts = (
       type: ALL_PRODUCTS_REQUEST,
     });
     // Get Data from API Backend
-    let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`;
+    let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`;
 
     if (category) {
       link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`;
