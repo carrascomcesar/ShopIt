@@ -70,7 +70,7 @@ export default function Home({ match }) {
                           placement: "top",
                           visible: true,
                         }}
-                        value="price"
+                        value={price}
                         onChange={(price) => setPrice(price)}
                       />
                     </div>
