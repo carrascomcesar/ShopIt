@@ -77,23 +77,20 @@ export default function Home({ match }) {
                   </div>
                   <div className="col-6 col-md-9">
                     <div className="row">
-                      {products.map((product) => (
-                        <Product
-                          key={product._id}
-                          product={product}
-                          col={4}
-                        ></Product>
-                      ))}
+                      {products &&
+                        products.map((product) => (
+                          <Product
+                            key={product._id}
+                            product={product}
+                            col={4}
+                          ></Product>
+                        ))}
                     </div>
                   </div>
                 </Fragment>
               ) : (
                 products.map((product) => (
-                  <Product
-                    key={product._id}
-                    product={product}
-                    col={3}
-                  ></Product>
+                  <Product key={product._id} product={product}></Product>
                 ))
               )}
             </div>
