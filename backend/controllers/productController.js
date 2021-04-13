@@ -118,17 +118,21 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   // Search & Filter Functions
   const apiFeatures = new APIFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultsPerPage);
+    .filter();
 
-  // Returned Products
-  const products = await apiFeatures.query;
+  let products = await apiFeatures.query;
+  let filteredProductsCount = products.length;
+  apiFeatures.pagination(resultsPerPage);
+
+  // // Returned Products
+  // const products = await apiFeatures.query;
 
   // JSON success
   res.status(200).json({
     success: true,
     productsCount,
     resultsPerPage,
+    filteredProductsCount,
     products,
   });
 });
