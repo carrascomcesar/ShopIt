@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { login, clearErrors } from "../../actions/authActions";
 
-export default function Login({ history }) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const alert = useAlert();
   const dispatch = useDispatch();
+
+  let history = useHistory();
 
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
