@@ -3,7 +3,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   CLEAR_ERRORS,
-} from "../constants/userConstants";
+} from "../constants/authConstants";
 
 export const authReducer = (state = { user: {} }, action) => {
   switch (action.type) {
