@@ -5,7 +5,6 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
-
 // Admin Routes
 
 // Get User Details => /api/v1/admin/user/:id
@@ -17,10 +16,10 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler(`User does not found with id: ${req.params.id}`)
     );
   }
-  
+
   // Remove avatar from Cloudinary - TODO
 
-  await user.remove()
+  await user.remove();
 
   res.status(200).json({
     success: true,
@@ -124,8 +123,15 @@ exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+const cloudinary = require("cloudinary");
+
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
   const { name, email, password } = req.body;
 
   const user = await User.create({
@@ -133,8 +139,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     email,
     password,
     avatar: {
-      public_id: "",
-      url: "",
+      public_id: result.public_id,
+      url: result.secure_url,
     },
   });
   sendToken(user, 200, res);
