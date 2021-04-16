@@ -77,7 +77,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
     // Data sent to backend with axios
-    const { data } = await axios.post("api/v1/me");
+    const { data } = await axios.get("api/v1/me");
 
     // If success, send payload to backend
     dispatch({

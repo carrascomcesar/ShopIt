@@ -15,6 +15,7 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+
   return (
     <Router>
       <div className="App">
