@@ -6,6 +6,9 @@ import {
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAIL,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAIL,
   CLEAR_ERRORS,
 } from "../constants/authConstants";
 
@@ -64,6 +67,27 @@ export const register = (userData) => async (dispatch) => {
     // If error send error message.
     dispatch({
       type: REGISTER_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// LOAD USER INFO
+export const loadUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_USER_REQUEST });
+    // Data sent to backend with axios
+    const { data } = await axios.post("api/v1/me");
+
+    // If success, send payload to backend
+    dispatch({
+      type: LOAD_USER_SUCCESS,
+      payload: data.user,
+    });
+  } catch (error) {
+    // If error send error message.
+    dispatch({
+      type: LOAD_USER_FAIL,
       payload: error.response.data.message,
     });
   }

@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useEffect } from "react";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Home from "./components/Home";
@@ -7,7 +8,13 @@ import ProductDetails from "./components/product/ProductDetails";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 
+import { loadUser } from "./actions/authActions";
+import store from "./store";
+
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Router>
       <div className="App">
