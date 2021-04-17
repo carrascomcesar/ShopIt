@@ -5,7 +5,7 @@ import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader";
 
 export default function Profile() {
-  const { loading, user } = useSelector((state) => state.auth);
+  const { user, loading } = useSelector((state) => state.auth);
 
   return (
     <Fragment>
