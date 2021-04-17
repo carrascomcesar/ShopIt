@@ -11,8 +11,43 @@ import {
   LOAD_USER_FAIL,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_RESET,
   CLEAR_ERRORS,
 } from "../constants/authConstants";
+
+// UPDATE PROFILE
+export const updateProfile = (userData) => async (dispatch) => {
+  try {
+    dispatch({
+      type: UPDATE_PROFILE_REQUEST,
+    });
+
+    // Data configuration
+    const config = {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+    };
+
+    // Data sent to backend with axios
+    const { data } = await axios.post("api/v1/me/update", userData, config);
+
+    // If success, send payload to backend
+    dispatch({
+      type: UPDATE_PROFILE_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    // If error send error message.
+    dispatch({
+      type: UPDATE_PROFILE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 // Login
 export const login = (email, password) => async (dispatch) => {
